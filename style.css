@@ -1,13 +1,14 @@
 /* ==========================================================================
    Oana-Style Cozy Personal Website ("Vibe Coding" Cream & Dusty Rose Theme)
+   v2.0 — Comprehensive Visual, Interactive & Responsive Optimization
    ========================================================================== */
 
 :root {
   --bg-cream: #FCF8F3;
-  --bg-cream-deep: #F6EFE6;
+  --bg-cream-deep: #F5ECE2;
   --card-white: #FFFFFF;
   --rose-title: #C57685;
-  --rose-dark: #A65868;
+  --rose-dark: #9E5060;
   --rose-muted: #D89AA6;
   --rose-soft: #F7D7DE;
   --rose-pastel: #FCEBEF;
@@ -15,8 +16,11 @@
   --text-sub: #7C706B;
   --text-light: #B6A9A4;
   --yellow-sparkle: #FFE066;
+  --mint-soft: #E5F4EC;
+  --lemon-soft: #FFF6D6;
+  --lavender-soft: #F0EBF8;
   --shadow-soft: 0 8px 28px rgba(180, 140, 145, 0.08);
-  --shadow-card: 0 10px 32px rgba(175, 130, 138, 0.11);
+  --shadow-card: 0 12px 34px rgba(175, 130, 138, 0.13);
   --shadow-bubble: 0 4px 16px rgba(180, 145, 150, 0.09);
   --radius-lg: 20px;
   --radius-md: 14px;
@@ -27,20 +31,23 @@
 
 /* Night Lamp Mode (Cozy Evening Room Easter Egg) */
 body.night-mode {
-  --bg-cream: #262124;
-  --bg-cream-deep: #1E191C;
-  --card-white: #322B2F;
+  --bg-cream: #231E21;
+  --bg-cream-deep: #1B1619;
+  --card-white: #2F282C;
   --rose-title: #F2A7B5;
   --rose-dark: #FFD1DA;
   --rose-muted: #C98A96;
   --rose-soft: #593840;
-  --rose-pastel: #422B31;
+  --rose-pastel: #3D282E;
   --text-main: #F3EAE6;
   --text-sub: #C8B9B4;
   --text-light: #8D7E79;
-  --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.28);
-  --shadow-card: 0 12px 36px rgba(0, 0, 0, 0.38);
-  --shadow-bubble: 0 4px 18px rgba(0, 0, 0, 0.3);
+  --mint-soft: #263B32;
+  --lemon-soft: #3D3522;
+  --lavender-soft: #312B3D;
+  --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.32);
+  --shadow-card: 0 14px 38px rgba(0, 0, 0, 0.44);
+  --shadow-bubble: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
 * {
@@ -49,10 +56,12 @@ body.night-mode {
   padding: 0;
 }
 
-/* Cute Custom Pencil Cursor (matching screenshots!) */
+/* Cute Custom Pencil Cursor */
 html, body {
   min-height: 100%;
   background-color: var(--bg-cream);
+  background-image: radial-gradient(rgba(197, 118, 133, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
   color: var(--text-main);
   font-family: var(--font-body);
   font-size: 15px;
@@ -62,8 +71,30 @@ html, body {
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g transform='rotate(-15 16 16)'><polygon points='4,4 11,7 7,11' fill='%23F4D0A4'/><polygon points='4,4 7,5.3 5.3,7' fill='%234A403C'/><rect x='7.5' y='6.5' width='16' height='6' rx='1' transform='rotate(45 10 9)' fill='%23FFD447' stroke='%234A403C' stroke-width='1.2'/><rect x='19.5' y='18.5' width='3.5' height='6' rx='0.5' transform='rotate(45 21 21)' fill='%23C8C8C8' stroke='%234A403C' stroke-width='1.1'/><rect x='21.8' y='20.8' width='4.5' height='6' rx='2' transform='rotate(45 24 24)' fill='%23F497A9' stroke='%234A403C' stroke-width='1.2'/></g></svg>") 4 4, auto;
 }
 
-a, button, [role="button"], .clickable, .tag-pill, .room-hotspot, .cal-day:not(.empty) {
+a, button, [role="button"], .clickable, .tag-pill, .room-hotspot, .cal-day:not(.empty), .filter-pill, .color-dot {
   cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'><circle cx='6' cy='6' r='3' fill='%23F497A9' opacity='0.6'/><g transform='rotate(-8 17 17)'><polygon points='5,5 12,8 8,12' fill='%23F4D0A4'/><polygon points='5,5 8,6.3 6.3,8' fill='%23C57685'/><rect x='8.5' y='7.5' width='16' height='6' rx='1' transform='rotate(45 11 10)' fill='%23FFE066' stroke='%234A403C' stroke-width='1.2'/><rect x='20.5' y='19.5' width='3.5' height='6' rx='0.5' transform='rotate(45 22 22)' fill='%23E2E2E2' stroke='%234A403C' stroke-width='1.1'/><rect x='22.8' y='21.8' width='4.5' height='6' rx='2' transform='rotate(45 25 25)' fill='%23F497A9' stroke='%234A403C' stroke-width='1.2'/></g></svg>") 5 5, pointer;
+}
+
+/* Click Sparkle Particle Effect */
+.click-sparkle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 14px;
+  color: var(--rose-title);
+  user-select: none;
+  animation: sparkleFloat 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes sparkleFloat {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.6) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx, 12px)), calc(-50% - 34px)) scale(1.25) rotate(var(--rot, 20deg));
+  }
 }
 
 /* ==========================================================================
@@ -95,7 +126,7 @@ a, button, [role="button"], .clickable, .tag-pill, .room-hotspot, .cal-day:not(.
   padding: 56px 28px 96px;
 }
 
-/* Back to room link (exact match to screenshots) */
+/* Back to room link */
 .back-to-room {
   display: inline-flex;
   align-items: center;
@@ -104,9 +135,9 @@ a, button, [role="button"], .clickable, .tag-pill, .room-hotspot, .cal-day:not(.
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
-  margin-bottom: 36px;
-  padding: 6px 10px;
-  margin-left: -10px;
+  margin-bottom: 32px;
+  padding: 6px 12px;
+  margin-left: -12px;
   border-radius: var(--radius-pill);
   transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
   background: transparent;
@@ -119,25 +150,25 @@ a, button, [role="button"], .clickable, .tag-pill, .room-hotspot, .cal-day:not(.
   transform: translateX(-3px);
 }
 
-/* Quick Floating Navigation Pill (Bottom-Left helper for easy preview) */
+/* Quick Floating Navigation Pill */
 .quick-nav {
   position: fixed;
-  top: 18px;
-  right: 22px;
+  top: 16px;
+  right: 20px;
   z-index: 90;
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(10px);
-  padding: 6px 10px;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(12px);
+  padding: 5px 8px;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(197, 118, 133, 0.14);
+  border: 1px solid rgba(197, 118, 133, 0.15);
 }
 
 body.night-mode .quick-nav {
-  background: rgba(50, 43, 47, 0.85);
+  background: rgba(47, 40, 44, 0.88);
 }
 
 .quick-nav-btn {
@@ -145,7 +176,7 @@ body.night-mode .quick-nav {
   background: transparent;
   color: var(--text-sub);
   font-size: 12.5px;
-  padding: 5px 12px;
+  padding: 5px 11px;
   border-radius: var(--radius-pill);
   font-family: var(--font-body);
   transition: all 0.2s ease;
@@ -161,6 +192,26 @@ body.night-mode .quick-nav {
   background: var(--rose-soft);
   color: var(--rose-dark);
   font-weight: 600;
+}
+
+.sfx-toggle-btn {
+  border: none;
+  background: var(--rose-pastel);
+  color: var(--rose-title);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.sfx-toggle-btn:hover {
+  transform: scale(1.08);
+  background: var(--rose-soft);
 }
 
 /* ==========================================================================
@@ -193,13 +244,13 @@ body.night-mode .quick-nav {
 }
 
 /* ==========================================================================
-   PAGE 1: Interactive Cozy Room (Home) + Booking Section
+   PAGE 1: Interactive Cozy Room (Home)
    ========================================================================== */
 
 .room-hero {
   max-width: 880px;
   margin: 0 auto;
-  padding: 54px 24px 36px;
+  padding: 54px 24px 28px;
   text-align: center;
 }
 
@@ -221,22 +272,22 @@ body.night-mode .quick-nav {
   font-size: 36px;
   color: var(--rose-title);
   letter-spacing: 0.08em;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .room-subtitle {
   font-size: 14px;
   color: var(--text-light);
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
 /* Interactive Illustrated Room Stage */
 .room-stage {
   position: relative;
   width: 100%;
-  max-width: 780px;
-  height: 430px;
-  margin: 0 auto 28px;
+  max-width: 800px;
+  height: 440px;
+  margin: 0 auto 22px;
   background: linear-gradient(180deg, var(--card-white) 0%, var(--bg-cream-deep) 100%);
   border-radius: 28px;
   box-shadow: var(--shadow-card);
@@ -245,7 +296,6 @@ body.night-mode .quick-nav {
   user-select: none;
 }
 
-/* Wall & Desk surface inside Room Stage */
 .room-wall-decor {
   position: absolute;
   inset: 0;
@@ -254,14 +304,33 @@ body.night-mode .quick-nav {
   pointer-events: none;
 }
 
+/* Warm Lamp Light Cone when Night Mode is active */
+.lamp-glow-cone {
+  position: absolute;
+  top: 72px;
+  right: 8px;
+  width: 240px;
+  height: 340px;
+  background: radial-gradient(ellipse at top, rgba(255, 224, 102, 0.25) 0%, rgba(255, 224, 102, 0) 70%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+body.night-mode .lamp-glow-cone {
+  opacity: 1;
+}
+
 .room-desk-surface {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 135px;
+  height: 140px;
   background: #F3E5D8;
   border-top: 3px solid #E3CFC0;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 body.night-mode .room-desk-surface {
@@ -269,7 +338,7 @@ body.night-mode .room-desk-surface {
   border-top-color: #3E3237;
 }
 
-/* Room Interactive Hotspots */
+/* Room Interactive Hotspots (Percentage-based for smooth responsiveness) */
 .room-hotspot {
   position: absolute;
   display: flex;
@@ -277,7 +346,7 @@ body.night-mode .room-desk-surface {
   align-items: center;
   background: none;
   border: none;
-  padding: 6px;
+  padding: 4px;
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 5;
 }
@@ -288,12 +357,12 @@ body.night-mode .room-desk-surface {
 }
 
 .hotspot-badge {
-  margin-top: 6px;
+  margin-top: 5px;
   background: var(--card-white);
   color: var(--rose-dark);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 3.5px 11px;
   border-radius: var(--radius-pill);
   box-shadow: 0 4px 14px rgba(197, 118, 133, 0.18);
   border: 1px solid rgba(197, 118, 133, 0.22);
@@ -306,51 +375,36 @@ body.night-mode .room-desk-surface {
   transform: scale(1.05);
 }
 
-/* Specific Room Item Positions */
-.hotspot-window {
-  top: 34px;
-  left: 52px;
+/* Percentage-based positions inside .room-stage */
+.hotspot-window    { top: 7%;  left: 5%; }
+.hotspot-about     { top: 9%;  left: 30%; }
+.hotspot-guestbook { top: 8%;  left: 56%; }
+.hotspot-lamp      { top: 7%;  right: 5%; }
+
+.hotspot-journal   { bottom: 8%; left: 6%; }
+.hotspot-booking   { bottom: 7%; left: 29%; }
+.hotspot-vinyl     { bottom: 9%; left: 50%; }
+.hotspot-coffee    { bottom: 9%; right: 20%; }
+.hotspot-cat       { bottom: 7%; right: 4%; }
+
+/* Vinyl spinning animation when BGM is playing */
+.vinyl-disc {
+  transform-origin: 48px 46px;
 }
 
-.hotspot-about {
-  top: 46px;
-  left: 255px;
+.room-hotspot.playing .vinyl-disc {
+  animation: spinVinyl 3.5s linear infinite;
 }
 
-.hotspot-guestbook {
-  top: 42px;
-  right: 215px;
-}
-
-.hotspot-lamp {
-  top: 36px;
-  right: 54px;
-}
-
-.hotspot-journal {
-  bottom: 42px;
-  left: 115px;
-}
-
-.hotspot-booking {
-  bottom: 36px;
-  left: 335px;
-}
-
-.hotspot-coffee {
-  bottom: 50px;
-  right: 175px;
-}
-
-.hotspot-cat {
-  bottom: 38px;
-  right: 48px;
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 /* Toast bubble inside room */
 .room-toast {
   position: absolute;
-  top: 18px;
+  top: 16px;
   left: 50%;
   transform: translateX(-50%) translateY(-10px);
   background: var(--card-white);
@@ -372,6 +426,35 @@ body.night-mode .room-desk-surface {
   transform: translateX(-50%) translateY(0);
 }
 
+/* Mini Status Bar under Room Stage */
+.room-status-strip {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--card-white);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-soft);
+  font-size: 12.5px;
+  color: var(--text-sub);
+  border: 1px solid rgba(197, 118, 133, 0.1);
+}
+
+.status-dot-online {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #88C999;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.status-divider {
+  color: var(--rose-soft);
+}
+
 /* ==========================================================================
    Event Pricing, Open-Me Pink Notebook & Schedule Calendar (Screenshot 8)
    ========================================================================== */
@@ -382,7 +465,6 @@ body.night-mode .room-desk-surface {
   padding: 20px 24px 40px;
 }
 
-/* 1.5k / 6h Starburst Sticker Badge */
 .price-seal-wrap {
   margin-bottom: 26px;
 }
@@ -429,7 +511,6 @@ body.night-mode .room-desk-surface {
   margin-top: 2px;
 }
 
-/* Scenarios + Pink Notebook Row */
 .scenarios-notebook-row {
   display: flex;
   align-items: center;
@@ -464,7 +545,7 @@ body.night-mode .room-desk-surface {
   font-weight: 600;
 }
 
-/* Cute Pink Notebook ("* * * open me") from Screenshot 8 */
+/* Cute Pink Notebook ("* * * open me") */
 .pink-notebook-wrapper {
   perspective: 900px;
   flex-shrink: 0;
@@ -490,7 +571,6 @@ body.night-mode .room-desk-surface {
 }
 
 .pink-notebook::before {
-  /* Notebook left spine groove */
   content: "";
   position: absolute;
   top: 0;
@@ -501,7 +581,6 @@ body.night-mode .room-desk-surface {
 }
 
 .pink-notebook::after {
-  /* Page edge effect on right/bottom */
   content: "";
   position: absolute;
   right: -4px;
@@ -514,10 +593,10 @@ body.night-mode .room-desk-surface {
 }
 
 .pink-notebook:hover {
-  transform: rotateY(-12deg) translateY(-4px);
+  transform: rotateY(-14deg) translateY(-4px);
   box-shadow:
     -4px 0 0 #E4AAB8,
-    8px 16px 32px rgba(185, 130, 142, 0.3);
+    10px 18px 34px rgba(185, 130, 142, 0.32);
 }
 
 .notebook-asterisks {
@@ -549,7 +628,7 @@ body.night-mode .room-desk-surface {
   background: rgba(155, 116, 123, 0.35);
 }
 
-/* Calendar Card ("查看档期 ↓") from Screenshot 8 */
+/* Calendar Card ("查看档期 ↓") */
 .calendar-card {
   background: var(--card-white);
   border-radius: var(--radius-lg);
@@ -623,6 +702,7 @@ body.night-mode .room-desk-surface {
   border-radius: 10px;
   transition: all 0.18s ease;
   user-select: none;
+  position: relative;
 }
 
 .cal-day.empty {
@@ -715,7 +795,7 @@ body.night-mode .cal-day.booked {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-bottom: 36px;
+  margin-bottom: 38px;
 }
 
 .tag-pill {
@@ -741,21 +821,34 @@ body.night-mode .cal-day.booked {
   box-shadow: 0 6px 16px rgba(197, 118, 133, 0.15);
 }
 
-/* Floating Popover Card ("Cola说：...") from Screenshot 9 */
+/* Floating Popover Card ("Cola说：...") with speech pointer */
 .cola-popover {
   position: absolute;
   z-index: 40;
   background: var(--card-white);
   border-radius: 14px;
   padding: 14px 18px;
-  min-width: 230px;
-  max-width: 290px;
+  min-width: 235px;
+  max-width: 300px;
   box-shadow: 0 12px 30px rgba(160, 120, 128, 0.18);
-  border: 1px solid rgba(197, 118, 133, 0.14);
+  border: 1px solid rgba(197, 118, 133, 0.16);
   opacity: 0;
   pointer-events: none;
   transform: translateY(6px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
+  transition: opacity 0.22s ease, transform 0.22s ease, top 0.2s ease, left 0.2s ease;
+}
+
+.cola-popover::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: var(--arrow-left, 32px);
+  width: 11px;
+  height: 11px;
+  background: var(--card-white);
+  border-left: 1px solid rgba(197, 118, 133, 0.16);
+  border-top: 1px solid rgba(197, 118, 133, 0.16);
+  transform: rotate(45deg);
 }
 
 .cola-popover.visible {
@@ -776,7 +869,7 @@ body.night-mode .cal-day.booked {
   line-height: 1.55;
 }
 
-/* White info cards (性格 / 爱好) */
+/* White info cards (性格 / 爱好 / 最近的状态) */
 .info-card {
   background: var(--card-white);
   border-radius: 18px;
@@ -813,13 +906,42 @@ body.night-mode .cal-day.booked {
 }
 
 /* ==========================================================================
-   PAGE 3: Journal (Screenshot 7)
+   PAGE 3: Journal (Screenshot 7) + Category Filters
    ========================================================================== */
 
 .journal-intro {
   font-size: 14.5px;
   color: var(--text-sub);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+}
+
+.journal-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.filter-pill {
+  background: var(--card-white);
+  color: var(--text-sub);
+  border: 1px solid rgba(197, 118, 133, 0.12);
+  padding: 5px 15px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+  color: var(--rose-title);
+  background: var(--rose-pastel);
+}
+
+.filter-pill.active {
+  background: var(--rose-soft);
+  color: var(--rose-dark);
+  font-weight: 600;
+  border-color: transparent;
 }
 
 .journal-grid {
@@ -835,6 +957,7 @@ body.night-mode .cal-day.booked {
   overflow: hidden;
   box-shadow: var(--shadow-soft);
   transition: transform 0.28s ease, box-shadow 0.28s ease;
+  position: relative;
 }
 
 .journal-card:hover {
@@ -861,7 +984,11 @@ body.night-mode .cal-day.booked {
 }
 
 .journal-card-body {
-  padding: 16px 20px 22px;
+  padding: 16px 20px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .journal-card-title {
@@ -876,14 +1003,30 @@ body.night-mode .cal-day.booked {
   color: var(--text-light);
 }
 
+.journal-like-badge {
+  flex-shrink: 0;
+  background: var(--rose-pastel);
+  color: var(--rose-title);
+  border: none;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.journal-like-badge:hover {
+  transform: scale(1.08);
+  background: var(--rose-soft);
+}
+
 /* ==========================================================================
-   PAGE 4: Guestbook ✦ (Screenshots 10 & 11)
+   PAGE 4: Guestbook ✦ (Screenshots 10 & 11) + Draggable & Color Picker
    ========================================================================== */
 
 .guestbook-page {
   position: relative;
   min-height: 100vh;
-  padding: 36px 36px 110px;
+  padding: 36px 36px 115px;
   display: flex;
   flex-direction: column;
 }
@@ -893,7 +1036,7 @@ body.night-mode .cal-day.booked {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   z-index: 20;
 }
 
@@ -913,6 +1056,13 @@ body.night-mode .cal-day.booked {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+}
+
+.guestbook-hint {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 8px;
 }
 
 /* Floating Bubbles Stage */
@@ -950,9 +1100,16 @@ body.night-mode .cal-day.booked {
   animation-delay: var(--delay, 0s);
   user-select: none;
   z-index: 5;
+  touch-action: none;
 }
 
-.guest-bubble:hover {
+.guest-bubble[data-tint="pink"]     { background: var(--rose-pastel); }
+.guest-bubble[data-tint="lemon"]    { background: var(--lemon-soft); }
+.guest-bubble[data-tint="mint"]     { background: var(--mint-soft); }
+.guest-bubble[data-tint="lavender"] { background: var(--lavender-soft); }
+
+.guest-bubble:hover,
+.guest-bubble.dragging {
   transform: scale(1.04) translateY(-2px);
   box-shadow: var(--shadow-card);
   z-index: 25;
@@ -968,7 +1125,7 @@ body.night-mode .cal-day.booked {
 .guest-bubble-likes {
   font-size: 12px;
   color: var(--rose-title);
-  background: var(--rose-pastel);
+  background: rgba(197, 118, 133, 0.12);
   padding: 1px 7px;
   border-radius: var(--radius-pill);
   display: none;
@@ -1009,11 +1166,11 @@ body.night-mode .cal-day.booked {
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* Bottom-Right "my secret" Folder Icon (Screenshots 10 & 11) */
+/* Bottom-Right "my secret" Folder Icon */
 .my-secret-trigger {
   position: fixed;
   right: 42px;
-  bottom: 72px;
+  bottom: 74px;
   z-index: 45;
   background: none;
   border: none;
@@ -1047,7 +1204,7 @@ body.night-mode .cal-day.booked {
   letter-spacing: 0.06em;
 }
 
-/* Guestbook Bottom Input Bar (Screenshots 10 & 11) */
+/* Guestbook Bottom Input Bar */
 .guestbook-input-bar {
   position: fixed;
   bottom: 0;
@@ -1055,11 +1212,11 @@ body.night-mode .cal-day.booked {
   right: 0;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
-  padding: 14px 24px;
+  padding: 13px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   z-index: 40;
   border-top: 1px solid rgba(197, 118, 133, 0.08);
 }
@@ -1068,11 +1225,30 @@ body.night-mode .guestbook-input-bar {
   background: rgba(42, 35, 39, 0.92);
 }
 
+.bubble-color-picker {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.color-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(197, 118, 133, 0.25);
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.color-dot.active {
+  transform: scale(1.22);
+  border-color: var(--rose-title);
+}
+
 .gb-input {
   background: var(--bg-cream);
   border: 1px solid transparent;
   border-radius: var(--radius-pill);
-  padding: 10px 18px;
+  padding: 9px 18px;
   font-size: 13.5px;
   color: var(--text-main);
   font-family: var(--font-body);
@@ -1089,20 +1265,15 @@ body.night-mode .guestbook-input-bar {
   box-shadow: 0 0 0 3px rgba(197, 118, 133, 0.12);
 }
 
-.gb-input-msg {
-  width: 240px;
-}
-
-.gb-input-name {
-  width: 150px;
-}
+.gb-input-msg { width: 240px; }
+.gb-input-name { width: 130px; }
 
 .gb-submit-btn {
   background: #F6D5DC;
   color: var(--rose-dark);
   border: none;
   border-radius: var(--radius-pill);
-  padding: 10px 22px;
+  padding: 9px 22px;
   font-size: 13.5px;
   font-weight: 600;
   font-family: var(--font-body);
@@ -1115,7 +1286,7 @@ body.night-mode .guestbook-input-bar {
 }
 
 /* ==========================================================================
-   Modal Overlay (for Opened Pink Notebook & Journal Item Preview)
+   Modal Overlay
    ========================================================================== */
 
 .modal-backdrop {
@@ -1141,13 +1312,15 @@ body.night-mode .guestbook-input-bar {
 .modal-sheet {
   background: var(--card-white);
   border-radius: 24px;
-  max-width: 540px;
+  max-width: 560px;
   width: 100%;
   padding: 32px 34px;
   box-shadow: 0 20px 50px rgba(90, 60, 68, 0.22);
   position: relative;
   transform: translateY(12px) scale(0.96);
   transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 88vh;
+  overflow-y: auto;
 }
 
 .modal-backdrop.open .modal-sheet {
@@ -1170,7 +1343,6 @@ body.night-mode .guestbook-input-bar {
   justify-content: center;
 }
 
-/* Open Notebook Spread Styling */
 .notebook-spread {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1212,17 +1384,29 @@ body.night-mode .notebook-spread {
 
 /* Responsive adjustments */
 @media (max-width: 680px) {
-  .room-stage {
-    height: 480px;
+  .quick-nav {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    justify-content: center;
+    overflow-x: auto;
   }
-  .hotspot-window { left: 20px; top: 24px; }
-  .hotspot-about { left: 160px; top: 30px; }
-  .hotspot-guestbook { right: 110px; top: 32px; }
-  .hotspot-lamp { right: 18px; top: 26px; }
-  .hotspot-journal { left: 30px; bottom: 48px; }
-  .hotspot-booking { left: 175px; bottom: 42px; }
-  .hotspot-coffee { right: 105px; bottom: 52px; }
-  .hotspot-cat { right: 16px; bottom: 40px; }
+  .room-stage {
+    height: 490px;
+  }
+  .room-hotspot svg {
+    transform: scale(0.84);
+  }
+  .hotspot-window    { top: 4%;  left: 2%; }
+  .hotspot-about     { top: 4%;  left: 34%; }
+  .hotspot-lamp      { top: 4%;  right: 2%; }
+  .hotspot-guestbook { top: 36%; left: 32%; }
+
+  .hotspot-journal   { bottom: 12%; left: 2%; }
+  .hotspot-booking   { bottom: 12%; left: 34%; }
+  .hotspot-vinyl     { bottom: 2%;  left: 18%; }
+  .hotspot-coffee    { bottom: 2%;  right: 30%; }
+  .hotspot-cat       { bottom: 10%; right: 2%; }
 
   .scenarios-notebook-row {
     flex-direction: column;
@@ -1235,7 +1419,7 @@ body.night-mode .notebook-spread {
     grid-template-columns: 1fr;
   }
   .calendar-card {
-    padding: 24px 18px;
+    padding: 24px 16px;
   }
   .notebook-spread {
     grid-template-columns: 1fr;
@@ -1243,12 +1427,11 @@ body.night-mode .notebook-spread {
   .notebook-spread::after {
     display: none;
   }
-  .gb-input-msg {
-    width: 150px;
+  .bubble-color-picker {
+    display: none;
   }
-  .gb-input-name {
-    width: 90px;
-  }
+  .gb-input-msg { width: 145px; }
+  .gb-input-name { width: 85px; }
   .secret-center-card {
     white-space: normal;
     width: 88vw;
