@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oana's Little Room 🫧 | 个人小房间与手帐作品集</title>
+  <meta name="description" content="欢迎来到我的奶油粉小房间～这里有关于我的碎片、手帐品牌@oana的小本子、活动现场肖像档期与漂浮留言板。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="site-wrapper">
+    <!-- Top-Right Quick Navigation Pill Bar -->
+    <nav class="quick-nav" aria-label="页面快捷导航">
+      <button type="button" class="quick-nav-btn active" data-nav="room">🏠 Room</button>
+      <button type="button" class="quick-nav-btn" data-nav="about">🌸 About Me</button>
+      <button type="button" class="quick-nav-btn" data-nav="journal">📖 Journal</button>
+      <button type="button" class="quick-nav-btn" data-nav="booking">🗓️ 档期报价</button>
+      <button type="button" class="quick-nav-btn" data-nav="guestbook">✦ Guestbook</button>
+    </nav>
+
+    <!-- ====================================================================
+         VIEW 1: ROOM HOMEPAGE + EVENT BOOKING & SCHEDULE CALENDAR
+         ==================================================================== -->
+    <main id="view-room" class="page-view active">
+      <section class="room-hero">
+        <div class="room-greeting">🫧 welcome to my cozy corner</div>
+        <h1 class="room-main-title">Oana's Room ✿</h1>
+        <p class="room-subtitle">点点房间里的小物件，去不同的角落逛逛吧～</p>
+
+        <!-- Interactive Illustrated Room Stage -->
+        <div class="room-stage" aria-label="互动小房间桌面">
+          <div class="room-wall-decor"></div>
+          <div class="room-desk-surface"></div>
+
+          <!-- Toast Notification inside Room -->
+          <div id="room-toast" class="room-toast">✨ 欢迎来到我的小房间 ♡</div>
+
+          <!-- 1. Window (Click to change weather) -->
+          <button type="button" id="hotspot-window" class="room-hotspot hotspot-window" title="点击切换窗外天气">
+            <svg width="128" height="142" viewBox="0 0 128 142" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="8" width="112" height="126" rx="56" fill="#FFFDFB" stroke="#E4CFC6" stroke-width="4"/>
+              <rect id="window-sky-rect" x="16" y="16" width="96" height="110" rx="48" fill="#E6F3F8"/>
+              <circle id="window-sun-circle" cx="82" cy="48" r="14" fill="#FFE066"/>
+              <!-- Fluffy clouds -->
+              <ellipse cx="48" cy="78" rx="22" ry="10" fill="#FFFFFF" opacity="0.92"/>
+              <ellipse cx="62" cy="74" rx="16" ry="11" fill="#FFFFFF" opacity="0.92"/>
+              <!-- Window panes -->
+              <line x1="64" y1="16" x2="64" y2="126" stroke="#FFFDFB" stroke-width="4"/>
+              <line x1="16" y1="74" x2="112" y2="74" stroke="#FFFDFB" stroke-width="4"/>
+            </svg>
+            <span class="hotspot-badge">🌤️ 窗外天气</span>
+          </button>
+
+          <!-- 2. Polaroid / Profile Mirror -> About Me Page -->
+          <button type="button" class="room-hotspot hotspot-about" data-goto="about" title="查看关于我 About Me">
+            <svg width="136" height="132" viewBox="0 0 136 132" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cute hanging string & tape -->
+              <rect x="52" y="4" width="32" height="12" rx="3" fill="#F7D0D9" transform="rotate(-4 68 10)"/>
+              <!-- Polaroid card -->
+              <g transform="rotate(-3 68 68)">
+                <rect x="18" y="12" width="100" height="112" rx="10" fill="#FFFFFF" stroke="#ECDAD6" stroke-width="2"/>
+                <rect x="28" y="22" width="80" height="72" rx="6" fill="#FCEBEF"/>
+                <!-- Cute girl portrait doodle -->
+                <circle cx="68" cy="54" r="16" fill="#FDE2D2"/>
+                <path d="M 49 54 Q 68 30 87 54" fill="#5D4037"/>
+                <circle cx="62" cy="55" r="2" fill="#4A403C"/>
+                <circle cx="74" cy="55" r="2" fill="#4A403C"/>
+                <ellipse cx="58" cy="60" rx="3.5" ry="2" fill="#F497A9" opacity="0.6"/>
+                <ellipse cx="78" cy="60" rx="3.5" ry="2" fill="#F497A9" opacity="0.6"/>
+                <path d="M 65 62 Q 68 65 71 62" stroke="#4A403C" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+                <!-- Flower pin -->
+                <circle cx="84" cy="42" r="5" fill="#C57685"/>
+                <circle cx="84" cy="42" r="2" fill="#FFF"/>
+                <text x="68" y="111" text-anchor="middle" font-family="Fredoka, sans-serif" font-size="11" fill="#C57685">About Me 🌸</text>
+              </g>
+            </svg>
+            <span class="hotspot-badge">🌸 About Me</span>
+          </button>
+
+          <!-- 3. Floating Message Board -> Guestbook Page -->
+          <button type="button" class="room-hotspot hotspot-guestbook" data-goto="guestbook" title="打开漂浮留言板 Guestbook">
+            <svg width="136" height="124" viewBox="0 0 136 124" xmlns="http://www.w3.org/2000/svg">
+              <g transform="rotate(3 68 62)">
+                <rect x="14" y="16" width="108" height="86" rx="14" fill="#FFFDFB" stroke="#E8D2CC" stroke-width="2"/>
+                <!-- Speech bubble stickers on board -->
+                <rect x="24" y="28" width="56" height="20" rx="10" fill="#FCEBEF"/>
+                <text x="52" y="42" text-anchor="middle" font-size="9" fill="#C57685">宝宝真厉害！</text>
+                <rect x="48" y="54" width="64" height="20" rx="10" fill="#F4EFEA"/>
+                <text x="80" y="68" text-anchor="middle" font-size="9" fill="#7C706B">我要约稿 ♡</text>
+                <!-- Sparkle star -->
+                <path d="M 34 66 L 37 73 L 44 76 L 37 79 L 34 86 L 31 79 L 24 76 L 31 73 Z" fill="#C57685"/>
+              </g>
+            </svg>
+            <span class="hotspot-badge">✦ Guestbook 留言板</span>
+          </button>
+
+          <!-- 4. Cozy Desk Lamp (Toggle Night Mode) -->
+          <button type="button" id="hotspot-lamp" class="room-hotspot hotspot-lamp" title="点击开关晚安小台灯">
+            <svg width="96" height="128" viewBox="0 0 96 128" xmlns="http://www.w3.org/2000/svg">
+              <!-- Warm light glow -->
+              <polygon points="22,52 74,52 92,118 4,118" fill="#FFE066" opacity="0.22"/>
+              <!-- Stand -->
+              <rect x="45" y="50" width="6" height="54" fill="#D5B895"/>
+              <ellipse cx="48" cy="106" rx="22" ry="7" fill="#E5CBB0"/>
+              <!-- Pleated lampshade -->
+              <path d="M 26 18 L 70 18 L 80 54 L 16 54 Z" fill="#FFF5D6" stroke="#E2C48E" stroke-width="2"/>
+              <line x1="38" y1="18" x2="32" y2="54" stroke="#EBD2A0" stroke-width="1.5"/>
+              <line x1="48" y1="18" x2="48" y2="54" stroke="#EBD2A0" stroke-width="1.5"/>
+              <line x1="58" y1="18" x2="64" y2="54" stroke="#EBD2A0" stroke-width="1.5"/>
+            </svg>
+            <span class="hotspot-badge">🪔 晚安台灯</span>
+          </button>
+
+          <!-- 5. Journal Notebook on Desk -> Journal Page -->
+          <button type="button" class="room-hotspot hotspot-journal" data-goto="journal" title="查看我的手帐品牌 @oana的小本子">
+            <svg width="138" height="106" viewBox="0 0 138 106" xmlns="http://www.w3.org/2000/svg">
+              <g transform="rotate(-5 69 53)">
+                <!-- Open journal spread on desk -->
+                <rect x="14" y="14" width="110" height="78" rx="8" fill="#C57685"/>
+                <rect x="18" y="17" width="50" height="72" rx="4" fill="#FFFDF9"/>
+                <rect x="70" y="17" width="50" height="72" rx="4" fill="#FFFDF9"/>
+                <!-- Cute stickers inside journal -->
+                <circle cx="36" cy="36" r="9" fill="#AED0BA"/>
+                <rect x="30" y="52" width="28" height="6" rx="3" fill="#E8D8D0"/>
+                <rect x="30" y="63" width="22" height="6" rx="3" fill="#E8D8D0"/>
+                <circle cx="94" cy="40" r="11" fill="#F9DCE2"/>
+                <text x="94" y="44" text-anchor="middle" font-size="10" fill="#C57685">♡</text>
+                <!-- Bookmark ribbon -->
+                <path d="M 68 89 L 68 103 L 73 98 L 78 103 L 78 89 Z" fill="#F497A9"/>
+              </g>
+            </svg>
+            <span class="hotspot-badge">📖 Journal 手帐本</span>
+          </button>
+
+          <!-- 6. Pink Sketchbook & Calendar -> Scroll to Booking Section -->
+          <button type="button" class="room-hotspot hotspot-booking" data-goto="room" data-scroll-booking="true" title="查看现场手绘活动报价与档期日历">
+            <svg width="128" height="108" viewBox="0 0 128 108" xmlns="http://www.w3.org/2000/svg">
+              <g transform="rotate(4 64 54)">
+                <rect x="24" y="10" width="76" height="90" rx="8" fill="#FADCE4" stroke="#E4AAB8" stroke-width="2"/>
+                <line x1="34" y1="10" x2="34" y2="100" stroke="#E4AAB8" stroke-width="1.5"/>
+                <text x="66" y="52" text-anchor="middle" font-size="16" fill="#543D40">* * *</text>
+                <text x="66" y="68" text-anchor="middle" font-family="monospace" font-size="8" fill="#9B747B">open me</text>
+              </g>
+            </svg>
+            <span class="hotspot-badge">🎨 活动报价 & 档期</span>
+          </button>
+
+          <!-- 7. Iced Coffee Cup (Interactive Coffee Counter) -->
+          <button type="button" id="hotspot-coffee" class="room-hotspot hotspot-coffee" title="点击喝一口续命冰美式">
+            <svg width="86" height="98" viewBox="0 0 86 98" xmlns="http://www.w3.org/2000/svg">
+              <!-- Straw -->
+              <path d="M 48 10 L 42 36" stroke="#C57685" stroke-width="4" stroke-linecap="round"/>
+              <!-- Cup -->
+              <ellipse cx="43" cy="84" rx="22" ry="6" fill="#E6D7C9"/>
+              <path d="M 23 36 L 63 36 L 57 82 L 29 82 Z" fill="#FFFDFB" stroke="#D9C7B8" stroke-width="2"/>
+              <path d="M 26 48 L 60 48 L 56 78 L 30 78 Z" fill="#6F4E37" opacity="0.85"/>
+              <!-- Ice cubes -->
+              <rect x="33" y="52" width="9" height="9" rx="2" fill="#FFF" opacity="0.7" transform="rotate(12 37 56)"/>
+              <rect x="45" y="54" width="9" height="9" rx="2" fill="#FFF" opacity="0.7" transform="rotate(-10 49 58)"/>
+            </svg>
+            <span class="hotspot-badge">☕ 冰美式</span>
+          </button>
+
+          <!-- 8. Sleeping Cat on Desk -->
+          <button type="button" id="hotspot-cat" class="room-hotspot hotspot-cat" title="摸摸打盹的小猫咪">
+            <svg width="104" height="88" viewBox="0 0 104 88" xmlns="http://www.w3.org/2000/svg">
+              <!-- Cushion -->
+              <ellipse cx="52" cy="64" rx="42" ry="16" fill="#F7D7DE"/>
+              <!-- Curled cat body -->
+              <ellipse cx="50" cy="54" rx="28" ry="18" fill="#FFFDF9" stroke="#D9C7B8" stroke-width="2"/>
+              <!-- Cat head & ears -->
+              <circle cx="32" cy="48" r="14" fill="#FFFDF9" stroke="#D9C7B8" stroke-width="2"/>
+              <polygon points="21,39 24,26 32,36" fill="#F7D7DE" stroke="#D9C7B8" stroke-width="1.5"/>
+              <polygon points="34,36 42,26 44,39" fill="#F7D7DE" stroke="#D9C7B8" stroke-width="1.5"/>
+              <!-- Closed sleeping eyes -->
+              <path d="M 25 49 Q 28 52 31 49" stroke="#6B5B52" stroke-width="1.5" fill="none"/>
+              <path d="M 34 49 Q 37 52 40 49" stroke="#6B5B52" stroke-width="1.5" fill="none"/>
+              <!-- Tail -->
+              <path d="M 76 56 Q 90 48 84 64" stroke="#FFFDF9" stroke-width="7" stroke-linecap="round" fill="none"/>
+              <text x="72" y="28" font-size="11" fill="#C57685">zZ</text>
+            </svg>
+            <span class="hotspot-badge">🐱 摸摸小猫</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           EVENT PRICING, PINK NOTEBOOK & SCHEDULE CALENDAR (Screenshot 8)
+           ================================================================== -->
+      <section id="booking-section" class="booking-section" aria-label="活动报价与档期">
+        <!-- 1.5k / 6h Starburst Sticker Seal -->
+        <div class="price-seal-wrap">
+          <div class="price-seal">
+            <svg class="seal-bg" viewBox="0 0 140 120" xmlns="http://www.w3.org/2000/svg">
+              <polygon
+                fill="#FCEBEF"
+                points="70,4 83,16 100,9 106,25 124,26 121,43 136,53 125,67 134,82 118,90 118,106 100,105 92,118 77,109 62,118 54,105 36,106 36,90 20,82 29,67 18,53 33,43 30,26 48,25 54,9 70,16"
+              />
+            </svg>
+            <div class="price-seal-amount">1.5k / 6h</div>
+            <div class="price-seal-label">一场活动的报价</div>
+          </div>
+        </div>
+
+        <!-- Scenarios + Pink Notebook Row -->
+        <div class="scenarios-notebook-row">
+          <div class="scenarios-list">
+            <h2 class="section-mini-title">适合场景 ♡</h2>
+            <p class="scenario-item"><strong>公司团建</strong> — 给每位同事画一幅肖像当纪念</p>
+            <p class="scenario-item"><strong>婚礼宾客</strong> — 签到处的特别环节</p>
+            <p class="scenario-item"><strong>商场节日</strong> — 快闪摊位 / 圣诞市集 / 周年庆</p>
+            <p class="scenario-item"><strong>品牌活动</strong> — 现场定制品牌联名小画</p>
+          </div>
+
+          <!-- Interactive Pink Notebook ("* * * open me") -->
+          <div class="pink-notebook-wrapper">
+            <div id="pink-notebook-btn" class="pink-notebook clickable" role="button" tabindex="0" title="点击翻开小本子查看详情">
+              <div class="notebook-asterisks">
+                <span>✻</span>
+                <span>✻</span>
+                <span>✻</span>
+              </div>
+              <div class="notebook-open-me">open me</div>
+              <div class="notebook-dots">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Schedule Calendar White Card ("查看档期 ↓") -->
+        <div class="calendar-card">
+          <h3 class="calendar-card-title">查看档期 ↓</h3>
+          <div class="calendar-nav">
+            <button type="button" id="cal-prev-btn" class="cal-nav-btn" aria-label="上个月">&lt;</button>
+            <div id="cal-month-label" class="cal-month-label">Jul 2026</div>
+            <button type="button" id="cal-next-btn" class="cal-nav-btn" aria-label="下个月">&gt;</button>
+          </div>
+
+          <div id="calendar-days-grid" class="calendar-grid"></div>
+
+          <div class="calendar-legend">
+            <span><i class="legend-dot"></i>已约</span>
+            <span>空白可约（点击日期可预约）</span>
+          </div>
+        </div>
+
+        <!-- Footer Handle -->
+        <footer class="site-footer-handle">
+          <span>🌍</span>
+          <span>Fafa1103_</span>
+        </footer>
+      </section>
+    </main>
+
+    <!-- ====================================================================
+         VIEW 2: ABOUT ME 🌸 (Screenshot 9)
+         ==================================================================== -->
+    <section id="view-about" class="page-view" aria-label="关于我 About Me">
+      <div class="content-narrow">
+        <button type="button" class="back-to-room" data-goto="room">← back to room</button>
+
+        <div>
+          <h2 class="page-title">
+            <span>About Me</span>
+            <span class="title-icon">
+              <svg width="28" height="28" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="7" r="5.5" fill="#C57685"/>
+                <circle cx="25" cy="13.5" r="5.5" fill="#C57685"/>
+                <circle cx="21.5" cy="24" r="5.5" fill="#C57685"/>
+                <circle cx="10.5" cy="24" r="5.5" fill="#C57685"/>
+                <circle cx="7" cy="13.5" r="5.5" fill="#C57685"/>
+                <circle cx="16" cy="16" r="3.2" fill="#FCF8F3"/>
+              </svg>
+            </span>
+          </h2>
+        </div>
+
+        <p id="about-whisper" class="about-whisper"></p>
+        <div id="about-intro" class="about-intro"></div>
+
+        <div class="about-tags-header">
+          ABOUT ME <span>(点点看)</span>
+        </div>
+        <div id="about-tags-wrap" class="about-tags-wrap"></div>
+
+        <div class="info-card">
+          <h3 class="info-card-title">性格</h3>
+          <ul id="personality-list" class="info-list"></ul>
+        </div>
+
+        <div class="info-card">
+          <h3 class="info-card-title">爱好</h3>
+          <ul id="hobbies-list" class="info-list"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 3: JOURNAL (Screenshot 7)
+         ==================================================================== -->
+    <section id="view-journal" class="page-view" aria-label="手帐作品集 Journal">
+      <div class="content-narrow">
+        <button type="button" class="back-to-room" data-goto="room">← back to room</button>
+
+        <div>
+          <h2 class="page-title">Journal</h2>
+        </div>
+        <p id="journal-subtitle" class="journal-intro"></p>
+
+        <div id="journal-grid" class="journal-grid"></div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         VIEW 4: GUESTBOOK ✦ (Screenshots 10 & 11)
+         ==================================================================== -->
+    <section id="view-guestbook" class="page-view" aria-label="留言板 Guestbook">
+      <div class="guestbook-page">
+        <div class="guestbook-top-bar">
+          <button type="button" class="back-to-room" data-goto="room">← back to room</button>
+          <h2 class="guestbook-center-title">
+            <span>Guestbook</span>
+            <span class="title-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 12 1 L 15 9 L 23 12 L 15 15 L 12 23 L 9 15 L 1 12 L 9 9 Z" fill="#C57685"/>
+              </svg>
+            </span>
+          </h2>
+          <div style="width:80px;"></div>
+        </div>
+
+        <!-- Floating Bubbles Stage -->
+        <div id="guestbook-stage" class="guestbook-stage"></div>
+
+        <!-- Bottom-Right "my secret" Folder Icon (Screenshots 10 & 11) -->
+        <button type="button" id="my-secret-trigger" class="my-secret-trigger" title="点点看我的小秘密 ♡">
+          <svg width="64" height="54" viewBox="0 0 64 54" xmlns="http://www.w3.org/2000/svg">
+            <!-- Yellow Sparkle Ticks (visible on hover/open like Screenshot 11) -->
+            <g class="secret-sparkles" stroke="#FFE066" stroke-width="2.5" stroke-linecap="round">
+              <line x1="16" y1="8" x2="12" y2="3"/>
+              <line x1="32" y1="5" x2="32" y2="0"/>
+              <line x1="48" y1="8" x2="52" y2="3"/>
+              <line x1="8" y1="22" x2="2" y2="20"/>
+              <line x1="56" y1="22" x2="62" y2="20"/>
+            </g>
+            <!-- Cute Pink Folder -->
+            <path d="M 14 16 L 26 16 L 30 20 L 50 20 C 52 20 54 22 54 24 L 54 44 C 54 46 52 48 50 48 L 14 48 C 12 48 10 46 10 44 L 10 20 C 10 18 12 16 14 16 Z" fill="#FAD2DC" stroke="#E4AAB8" stroke-width="1.5"/>
+            <rect x="14" y="23" width="36" height="22" rx="3" fill="#FCE8EE"/>
+          </svg>
+          <span class="my-secret-label">my secret</span>
+        </button>
+
+        <!-- Bottom Input Bar -->
+        <div class="guestbook-input-bar">
+          <input type="text" id="gb-input-msg" class="gb-input gb-input-msg" placeholder="说点什么~" maxlength="140" />
+          <input type="text" id="gb-input-name" class="gb-input gb-input-name" placeholder="署名" maxlength="24" />
+          <button type="button" id="gb-submit-btn" class="gb-submit-btn">发射 ♡</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reusable Modal Backdrop -->
+    <div id="modal-backdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+      <div class="modal-sheet">
+        <button type="button" id="modal-close-btn" class="modal-close" aria-label="关闭弹窗">×</button>
+        <div id="modal-body-content"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

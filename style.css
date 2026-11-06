@@ -1,0 +1,1257 @@
+/* ==========================================================================
+   Oana-Style Cozy Personal Website ("Vibe Coding" Cream & Dusty Rose Theme)
+   ========================================================================== */
+
+:root {
+  --bg-cream: #FCF8F3;
+  --bg-cream-deep: #F6EFE6;
+  --card-white: #FFFFFF;
+  --rose-title: #C57685;
+  --rose-dark: #A65868;
+  --rose-muted: #D89AA6;
+  --rose-soft: #F7D7DE;
+  --rose-pastel: #FCEBEF;
+  --text-main: #4A403C;
+  --text-sub: #7C706B;
+  --text-light: #B6A9A4;
+  --yellow-sparkle: #FFE066;
+  --shadow-soft: 0 8px 28px rgba(180, 140, 145, 0.08);
+  --shadow-card: 0 10px 32px rgba(175, 130, 138, 0.11);
+  --shadow-bubble: 0 4px 16px rgba(180, 145, 150, 0.09);
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+  --font-display: 'Fredoka', 'Nunito', 'Quicksand', "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-body: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Night Lamp Mode (Cozy Evening Room Easter Egg) */
+body.night-mode {
+  --bg-cream: #262124;
+  --bg-cream-deep: #1E191C;
+  --card-white: #322B2F;
+  --rose-title: #F2A7B5;
+  --rose-dark: #FFD1DA;
+  --rose-muted: #C98A96;
+  --rose-soft: #593840;
+  --rose-pastel: #422B31;
+  --text-main: #F3EAE6;
+  --text-sub: #C8B9B4;
+  --text-light: #8D7E79;
+  --shadow-soft: 0 8px 28px rgba(0, 0, 0, 0.28);
+  --shadow-card: 0 12px 36px rgba(0, 0, 0, 0.38);
+  --shadow-bubble: 0 4px 18px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cute Custom Pencil Cursor (matching screenshots!) */
+html, body {
+  min-height: 100%;
+  background-color: var(--bg-cream);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><g transform='rotate(-15 16 16)'><polygon points='4,4 11,7 7,11' fill='%23F4D0A4'/><polygon points='4,4 7,5.3 5.3,7' fill='%234A403C'/><rect x='7.5' y='6.5' width='16' height='6' rx='1' transform='rotate(45 10 9)' fill='%23FFD447' stroke='%234A403C' stroke-width='1.2'/><rect x='19.5' y='18.5' width='3.5' height='6' rx='0.5' transform='rotate(45 21 21)' fill='%23C8C8C8' stroke='%234A403C' stroke-width='1.1'/><rect x='21.8' y='20.8' width='4.5' height='6' rx='2' transform='rotate(45 24 24)' fill='%23F497A9' stroke='%234A403C' stroke-width='1.2'/></g></svg>") 4 4, auto;
+}
+
+a, button, [role="button"], .clickable, .tag-pill, .room-hotspot, .cal-day:not(.empty) {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'><circle cx='6' cy='6' r='3' fill='%23F497A9' opacity='0.6'/><g transform='rotate(-8 17 17)'><polygon points='5,5 12,8 8,12' fill='%23F4D0A4'/><polygon points='5,5 8,6.3 6.3,8' fill='%23C57685'/><rect x='8.5' y='7.5' width='16' height='6' rx='1' transform='rotate(45 11 10)' fill='%23FFE066' stroke='%234A403C' stroke-width='1.2'/><rect x='20.5' y='19.5' width='3.5' height='6' rx='0.5' transform='rotate(45 22 22)' fill='%23E2E2E2' stroke='%234A403C' stroke-width='1.1'/><rect x='22.8' y='21.8' width='4.5' height='6' rx='2' transform='rotate(45 25 25)' fill='%23F497A9' stroke='%234A403C' stroke-width='1.2'/></g></svg>") 5 5, pointer;
+}
+
+/* ==========================================================================
+   Page Container & View Switching
+   ========================================================================== */
+
+.site-wrapper {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.page-view {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.32s ease, transform 0.32s ease;
+}
+
+.page-view.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content-narrow {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 28px 96px;
+}
+
+/* Back to room link (exact match to screenshots) */
+.back-to-room {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--rose-muted);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 36px;
+  padding: 6px 10px;
+  margin-left: -10px;
+  border-radius: var(--radius-pill);
+  transition: color 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  background: transparent;
+  border: none;
+}
+
+.back-to-room:hover {
+  color: var(--rose-title);
+  background-color: var(--rose-pastel);
+  transform: translateX(-3px);
+}
+
+/* Quick Floating Navigation Pill (Bottom-Left helper for easy preview) */
+.quick-nav {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(197, 118, 133, 0.14);
+}
+
+body.night-mode .quick-nav {
+  background: rgba(50, 43, 47, 0.85);
+}
+
+.quick-nav-btn {
+  border: none;
+  background: transparent;
+  color: var(--text-sub);
+  font-size: 12.5px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.quick-nav-btn:hover {
+  color: var(--rose-title);
+  background: var(--rose-pastel);
+}
+
+.quick-nav-btn.active {
+  background: var(--rose-soft);
+  color: var(--rose-dark);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Typography & Page Titles
+   ========================================================================== */
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--rose-title);
+  letter-spacing: 0.08em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  user-select: none;
+}
+
+.title-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: gentleBob 3.2s ease-in-out infinite;
+}
+
+@keyframes gentleBob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(6deg); }
+}
+
+/* ==========================================================================
+   PAGE 1: Interactive Cozy Room (Home) + Booking Section
+   ========================================================================== */
+
+.room-hero {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 54px 24px 36px;
+  text-align: center;
+}
+
+.room-greeting {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--rose-title);
+  background: var(--rose-pastel);
+  padding: 5px 16px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+
+.room-main-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--rose-title);
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.room-subtitle {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 28px;
+}
+
+/* Interactive Illustrated Room Stage */
+.room-stage {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  height: 430px;
+  margin: 0 auto 28px;
+  background: linear-gradient(180deg, var(--card-white) 0%, var(--bg-cream-deep) 100%);
+  border-radius: 28px;
+  box-shadow: var(--shadow-card);
+  border: 2px solid rgba(197, 118, 133, 0.14);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Wall & Desk surface inside Room Stage */
+.room-wall-decor {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(197, 118, 133, 0.12) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  pointer-events: none;
+}
+
+.room-desk-surface {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 135px;
+  background: #F3E5D8;
+  border-top: 3px solid #E3CFC0;
+}
+
+body.night-mode .room-desk-surface {
+  background: #2B2326;
+  border-top-color: #3E3237;
+}
+
+/* Room Interactive Hotspots */
+.room-hotspot {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 6px;
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 5;
+}
+
+.room-hotspot:hover {
+  transform: translateY(-7px) scale(1.05);
+  z-index: 15;
+}
+
+.hotspot-badge {
+  margin-top: 6px;
+  background: var(--card-white);
+  color: var(--rose-dark);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 14px rgba(197, 118, 133, 0.18);
+  border: 1px solid rgba(197, 118, 133, 0.22);
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.room-hotspot:hover .hotspot-badge {
+  background: var(--rose-soft);
+  transform: scale(1.05);
+}
+
+/* Specific Room Item Positions */
+.hotspot-window {
+  top: 34px;
+  left: 52px;
+}
+
+.hotspot-about {
+  top: 46px;
+  left: 255px;
+}
+
+.hotspot-guestbook {
+  top: 42px;
+  right: 215px;
+}
+
+.hotspot-lamp {
+  top: 36px;
+  right: 54px;
+}
+
+.hotspot-journal {
+  bottom: 42px;
+  left: 115px;
+}
+
+.hotspot-booking {
+  bottom: 36px;
+  left: 335px;
+}
+
+.hotspot-coffee {
+  bottom: 50px;
+  right: 175px;
+}
+
+.hotspot-cat {
+  bottom: 38px;
+  right: 48px;
+}
+
+/* Toast bubble inside room */
+.room-toast {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: var(--card-white);
+  color: var(--text-main);
+  padding: 7px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--rose-soft);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.28s ease;
+  z-index: 30;
+  white-space: nowrap;
+}
+
+.room-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   Event Pricing, Open-Me Pink Notebook & Schedule Calendar (Screenshot 8)
+   ========================================================================== */
+
+.booking-section {
+  max-width: 680px;
+  margin: 12px auto 60px;
+  padding: 20px 24px 40px;
+}
+
+/* 1.5k / 6h Starburst Sticker Badge */
+.price-seal-wrap {
+  margin-bottom: 26px;
+}
+
+.price-seal {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 132px;
+  height: 112px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.price-seal:hover {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.price-seal svg.seal-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.price-seal-amount {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--rose-title);
+  letter-spacing: 0.03em;
+}
+
+.price-seal-label {
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* Scenarios + Pink Notebook Row */
+.scenarios-notebook-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-bottom: 44px;
+}
+
+.scenarios-list {
+  flex: 1;
+}
+
+.section-mini-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--rose-title);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scenario-item {
+  font-size: 14.5px;
+  color: var(--text-sub);
+  margin-bottom: 14px;
+  line-height: 1.6;
+}
+
+.scenario-item strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+/* Cute Pink Notebook ("* * * open me") from Screenshot 8 */
+.pink-notebook-wrapper {
+  perspective: 900px;
+  flex-shrink: 0;
+}
+
+.pink-notebook {
+  position: relative;
+  width: 176px;
+  height: 226px;
+  background: linear-gradient(135deg, #FADCE4 0%, #F7CDD8 100%);
+  border-radius: 6px 16px 16px 6px;
+  box-shadow:
+    -4px 0 0 #E4AAB8,
+    0 12px 26px rgba(185, 130, 142, 0.22),
+    inset 12px 0 18px rgba(255, 255, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+  user-select: none;
+  border: 1px solid rgba(228, 170, 184, 0.6);
+}
+
+.pink-notebook::before {
+  /* Notebook left spine groove */
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 14px;
+  width: 2px;
+  background: rgba(196, 130, 145, 0.35);
+}
+
+.pink-notebook::after {
+  /* Page edge effect on right/bottom */
+  content: "";
+  position: absolute;
+  right: -4px;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  background: #FFFDFB;
+  border-radius: 0 3px 3px 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.pink-notebook:hover {
+  transform: rotateY(-12deg) translateY(-4px);
+  box-shadow:
+    -4px 0 0 #E4AAB8,
+    8px 16px 32px rgba(185, 130, 142, 0.3);
+}
+
+.notebook-asterisks {
+  display: flex;
+  gap: 14px;
+  color: #543D40;
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+.notebook-open-me {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  color: #9B747B;
+  letter-spacing: 0.14em;
+}
+
+.notebook-dots {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.notebook-dots span {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(155, 116, 123, 0.35);
+}
+
+/* Calendar Card ("查看档期 ↓") from Screenshot 8 */
+.calendar-card {
+  background: var(--card-white);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px 30px;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+}
+
+.calendar-card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--rose-title);
+  letter-spacing: 0.06em;
+  margin-bottom: 22px;
+}
+
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 520px;
+  margin: 0 auto 22px;
+}
+
+.cal-nav-btn {
+  background: none;
+  border: none;
+  color: var(--text-light);
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.cal-nav-btn:hover {
+  color: var(--rose-title);
+  background: var(--rose-pastel);
+}
+
+.cal-month-label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rose-title);
+  letter-spacing: 0.08em;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 10px;
+  column-gap: 8px;
+  max-width: 540px;
+  margin: 0 auto 24px;
+}
+
+.cal-weekday {
+  font-size: 12px;
+  color: #DFB5BE;
+  font-weight: 500;
+  padding-bottom: 8px;
+}
+
+.cal-day {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13.5px;
+  color: var(--text-main);
+  border-radius: 10px;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.cal-day.empty {
+  pointer-events: none;
+}
+
+.cal-day:not(.empty):not(.booked):hover {
+  background: var(--rose-pastel);
+  color: var(--rose-dark);
+  transform: scale(1.06);
+}
+
+.cal-day.today {
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.cal-day.booked {
+  background: #F9DCE2;
+  color: var(--rose-title);
+  font-weight: 600;
+}
+
+body.night-mode .cal-day.booked {
+  background: #593840;
+  color: #FFD1DA;
+}
+
+.calendar-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #F9DCE2;
+  margin-right: 6px;
+}
+
+.site-footer-handle {
+  text-align: center;
+  margin-top: 26px;
+  font-size: 13.5px;
+  color: var(--text-sub);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* ==========================================================================
+   PAGE 2: About Me 🌸 (Screenshot 9)
+   ========================================================================== */
+
+.about-whisper {
+  font-size: 12.5px;
+  color: #D8A7B1;
+  margin-bottom: 24px;
+}
+
+.about-intro {
+  font-size: 15px;
+  color: var(--text-main);
+  line-height: 2;
+  margin-bottom: 30px;
+}
+
+.about-tags-header {
+  font-size: 12.5px;
+  color: var(--text-light);
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+.about-tags-header span {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.about-tags-wrap {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card-white);
+  color: var(--text-main);
+  font-size: 13.5px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(197, 118, 133, 0.1);
+  box-shadow: 0 3px 10px rgba(180, 140, 145, 0.06);
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.tag-pill:hover,
+.tag-pill.active {
+  background: var(--rose-pastel);
+  border-color: var(--rose-muted);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(197, 118, 133, 0.15);
+}
+
+/* Floating Popover Card ("Cola说：...") from Screenshot 9 */
+.cola-popover {
+  position: absolute;
+  z-index: 40;
+  background: var(--card-white);
+  border-radius: 14px;
+  padding: 14px 18px;
+  min-width: 230px;
+  max-width: 290px;
+  box-shadow: 0 12px 30px rgba(160, 120, 128, 0.18);
+  border: 1px solid rgba(197, 118, 133, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.cola-popover.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.cola-popover-speaker {
+  font-size: 12px;
+  color: #D8A7B1;
+  margin-bottom: 4px;
+}
+
+.cola-popover-text {
+  font-size: 13.5px;
+  color: var(--text-main);
+  line-height: 1.55;
+}
+
+/* White info cards (性格 / 爱好) */
+.info-card {
+  background: var(--card-white);
+  border-radius: 18px;
+  padding: 28px 32px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 22px;
+}
+
+.info-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rose-title);
+  margin-bottom: 14px;
+}
+
+.info-list {
+  list-style: none;
+}
+
+.info-list li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 14px;
+  color: var(--text-sub);
+  line-height: 2.05;
+}
+
+.info-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--rose-muted);
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   PAGE 3: Journal (Screenshot 7)
+   ========================================================================== */
+
+.journal-intro {
+  font-size: 14.5px;
+  color: var(--text-sub);
+  margin-bottom: 30px;
+}
+
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.journal-card {
+  background: var(--card-white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.journal-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card);
+}
+
+.journal-card-img {
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  background: #F4EFEA;
+}
+
+.journal-card-img svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.journal-card:hover .journal-card-img svg {
+  transform: scale(1.03);
+}
+
+.journal-card-body {
+  padding: 16px 20px 22px;
+}
+
+.journal-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+
+.journal-card-desc {
+  font-size: 12.5px;
+  color: var(--text-light);
+}
+
+/* ==========================================================================
+   PAGE 4: Guestbook ✦ (Screenshots 10 & 11)
+   ========================================================================== */
+
+.guestbook-page {
+  position: relative;
+  min-height: 100vh;
+  padding: 36px 36px 110px;
+  display: flex;
+  flex-direction: column;
+}
+
+.guestbook-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 16px;
+  z-index: 20;
+}
+
+.guestbook-top-bar .back-to-room {
+  margin-bottom: 0;
+}
+
+.guestbook-center-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--rose-title);
+  letter-spacing: 0.1em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Floating Bubbles Stage */
+.guestbook-stage {
+  position: relative;
+  flex: 1;
+  min-height: 540px;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+}
+
+.guestbook-stage.secret-dimmed .guest-bubble {
+  opacity: 0.22;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.guest-bubble {
+  position: absolute;
+  background: var(--card-white);
+  border-radius: var(--radius-pill);
+  padding: 10px 20px;
+  box-shadow: var(--shadow-bubble);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  max-width: min(88vw, 880px);
+  font-size: 13.5px;
+  color: var(--text-main);
+  line-height: 1.5;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.35s ease;
+  animation: floatBubble var(--dur, 7s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+  user-select: none;
+  z-index: 5;
+}
+
+.guest-bubble:hover {
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: var(--shadow-card);
+  z-index: 25;
+  animation-play-state: paused;
+}
+
+.guest-bubble-author {
+  font-size: 12px;
+  color: #DFB5BE;
+  flex-shrink: 0;
+}
+
+.guest-bubble-likes {
+  font-size: 12px;
+  color: var(--rose-title);
+  background: var(--rose-pastel);
+  padding: 1px 7px;
+  border-radius: var(--radius-pill);
+  display: none;
+}
+
+.guest-bubble.liked .guest-bubble-likes {
+  display: inline-block;
+}
+
+@keyframes floatBubble {
+  0% { transform: translate(0px, 0px); }
+  50% { transform: translate(8px, -6px); }
+  100% { transform: translate(-6px, 5px); }
+}
+
+/* Secret Modal Card in Center of Guestbook (Screenshot 11) */
+.secret-center-card {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.92);
+  background: var(--card-white);
+  padding: 26px 42px;
+  border-radius: 18px;
+  box-shadow: 0 14px 40px rgba(175, 130, 138, 0.18);
+  font-size: 14.5px;
+  color: var(--text-main);
+  white-space: nowrap;
+  z-index: 35;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.secret-center-card.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Bottom-Right "my secret" Folder Icon (Screenshots 10 & 11) */
+.my-secret-trigger {
+  position: fixed;
+  right: 42px;
+  bottom: 72px;
+  z-index: 45;
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px;
+  transition: transform 0.25s ease;
+}
+
+.my-secret-trigger:hover {
+  transform: scale(1.08);
+}
+
+.secret-sparkles {
+  opacity: 0;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.my-secret-trigger:hover .secret-sparkles,
+.my-secret-trigger.active .secret-sparkles {
+  opacity: 1;
+}
+
+.my-secret-label {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--rose-title);
+  letter-spacing: 0.06em;
+}
+
+/* Guestbook Bottom Input Bar (Screenshots 10 & 11) */
+.guestbook-input-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  z-index: 40;
+  border-top: 1px solid rgba(197, 118, 133, 0.08);
+}
+
+body.night-mode .guestbook-input-bar {
+  background: rgba(42, 35, 39, 0.92);
+}
+
+.gb-input {
+  background: var(--bg-cream);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  padding: 10px 18px;
+  font-size: 13.5px;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gb-input::placeholder {
+  color: #D0C4BF;
+}
+
+.gb-input:focus {
+  border-color: var(--rose-muted);
+  box-shadow: 0 0 0 3px rgba(197, 118, 133, 0.12);
+}
+
+.gb-input-msg {
+  width: 240px;
+}
+
+.gb-input-name {
+  width: 150px;
+}
+
+.gb-submit-btn {
+  background: #F6D5DC;
+  color: var(--rose-dark);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 10px 22px;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+}
+
+.gb-submit-btn:hover {
+  background: #F0C2CC;
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   Modal Overlay (for Opened Pink Notebook & Journal Item Preview)
+   ========================================================================== */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(74, 64, 60, 0.28);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-sheet {
+  background: var(--card-white);
+  border-radius: 24px;
+  max-width: 540px;
+  width: 100%;
+  padding: 32px 34px;
+  box-shadow: 0 20px 50px rgba(90, 60, 68, 0.22);
+  position: relative;
+  transform: translateY(12px) scale(0.96);
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-backdrop.open .modal-sheet {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: var(--rose-pastel);
+  color: var(--rose-dark);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Open Notebook Spread Styling */
+.notebook-spread {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  background: #FFF9FB;
+  border: 2px solid #F3D1DA;
+  border-radius: 16px;
+  padding: 22px;
+  margin-top: 12px;
+  position: relative;
+}
+
+body.night-mode .notebook-spread {
+  background: #292225;
+  border-color: #593840;
+}
+
+.notebook-spread::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 50%;
+  width: 1px;
+  background: repeating-linear-gradient(to bottom, #E5B8C4 0, #E5B8C4 6px, transparent 6px, transparent 12px);
+}
+
+.spread-page h4 {
+  font-size: 14px;
+  color: var(--rose-title);
+  margin-bottom: 10px;
+}
+
+.spread-page p, .spread-page li {
+  font-size: 13px;
+  color: var(--text-sub);
+  line-height: 1.75;
+}
+
+/* Responsive adjustments */
+@media (max-width: 680px) {
+  .room-stage {
+    height: 480px;
+  }
+  .hotspot-window { left: 20px; top: 24px; }
+  .hotspot-about { left: 160px; top: 30px; }
+  .hotspot-guestbook { right: 110px; top: 32px; }
+  .hotspot-lamp { right: 18px; top: 26px; }
+  .hotspot-journal { left: 30px; bottom: 48px; }
+  .hotspot-booking { left: 175px; bottom: 42px; }
+  .hotspot-coffee { right: 105px; bottom: 52px; }
+  .hotspot-cat { right: 16px; bottom: 40px; }
+
+  .scenarios-notebook-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pink-notebook-wrapper {
+    align-self: center;
+  }
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+  .calendar-card {
+    padding: 24px 18px;
+  }
+  .notebook-spread {
+    grid-template-columns: 1fr;
+  }
+  .notebook-spread::after {
+    display: none;
+  }
+  .gb-input-msg {
+    width: 150px;
+  }
+  .gb-input-name {
+    width: 90px;
+  }
+  .secret-center-card {
+    white-space: normal;
+    width: 88vw;
+    text-align: center;
+  }
+}
